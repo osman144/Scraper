@@ -35,8 +35,28 @@ mongoose.connect(MONGODB_URI);
 //Get route for scraping Reddit NBA website
 app.get('/', function(req,res){
     //First grab the body with an HTML request
-    axios.get('https://www.reddit.com/r/nba/').then(function(response){
+    axios.get('https://www.npr.org/sections/news/').then(function(response){
         //Load onto Cheerio
+        let $ = cheerio.load(response.data)
+
+        //Grab the title and link 
+
+        $('article h2').each(function(i,element){
+            //Save in result object
+            let result = {};
+
+            result.title = $(this).children("a").text();
+            result.link = $(this).children("a").attr("href");
+
+            // Create a new Article using the `result` object built from scraping
+            db.Article.create(result).then(function(dbArticle) {
+                // View the added result in the console
+                console.log(dbArticle);
+            }).catch(function(err) {
+                // If an error occurred, send it to the client
+                return res.json(err);
+      });
+        })
 
     })
 });
