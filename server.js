@@ -22,6 +22,9 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 
+//Handlebars
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
@@ -33,7 +36,7 @@ mongoose.connect(MONGODB_URI);
 
 
 //Get route for scraping Reddit NBA website
-app.get('/', function(req,res){
+app.get('/scraper', function(req,res){
     //First grab the body with an HTML request
     axios.get('https://www.npr.org/sections/news/').then(function(response){
         //Load onto Cheerio
@@ -61,6 +64,18 @@ app.get('/', function(req,res){
     })
 });
 
+// Route for getting all Articles from the db
+app.get('/home', function(req,res){
+    // Grab every document in the Articles collection
+    db.Article.find({}).then(function(dbArticle){
+        // res.json(dbArticle)
+        res.render('home',{result: dbArticle})
+    }).catch(function(err){
+        // If an error occurred, send it to the client
+        res.json(err)
+    })
+    
+})
 app.listen(PORT, function(){
     console.log("App running on port " + PORT + "!");
 });
