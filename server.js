@@ -34,6 +34,9 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlin
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
+app.get('/', function(req,res){
+    res.send('Hello World')
+})
 
 //Get route for scraping Reddit NBA website
 app.get('/scraper', function(req,res){
@@ -42,15 +45,18 @@ app.get('/scraper', function(req,res){
         //Load onto Cheerio
         let $ = cheerio.load(response.data)
 
-        //Grab the title and link 
+        //Grab the title and link
 
-        $('article h2').each(function(i,element){
+        $('article h2 p.teaser').each(function(i,element){
             //Save in result object
             let result = {};
 
             result.title = $(this).children("a").text();
             result.link = $(this).children("a").attr("href");
+            // result.blurb = $(this).children("a").text();
 
+            // result.image = $(this).attr('src')
+        
             // Create a new Article using the `result` object built from scraping
             db.Article.create(result).then(function(dbArticle) {
                 // View the added result in the console
@@ -59,9 +65,10 @@ app.get('/scraper', function(req,res){
                 // If an error occurred, send it to the client
                 return res.json(err);
       });
-        })
+        });
 
-    })
+    });
+
 });
 
 // Route for getting all Articles from the db
@@ -69,7 +76,7 @@ app.get('/home', function(req,res){
     // Grab every document in the Articles collection
     db.Article.find({}).then(function(dbArticle){
         // res.json(dbArticle)
-        res.render('home',{result: dbArticle})
+        res.render('index',{result: dbArticle})
     }).catch(function(err){
         // If an error occurred, send it to the client
         res.json(err)

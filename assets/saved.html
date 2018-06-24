@@ -23,10 +23,10 @@
         .demo-layout-transparent .mdl-layout__drawer-button {
           /* This background is dark, so we set text to white. Use 87% black instead if
              your background is light. */
-          color: chocolate;
+          color: black;
         }
         .mdl-layout-title{
-            font-size: 30px;
+            font-size: 25px;
             padding-left:300px;
             
         }
@@ -44,15 +44,12 @@
         <div class="demo-layout-transparent mdl-layout mdl-js-layout">
             <div class="mdl-layout__header mdl-layout__header--transparent">
                 <div class="mdl-layout__header-row">
-                <!-- Title -->
-                <span class="mdl-layout-title">Mongo Scraper</span>
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
                 <nav class="mdl-navigation">
                     <a class="mdl-navigation__link" href="">Home</a>
                     <a class="mdl-navigation__link" href="">Saved Articles</a>
-                    <button id="scrapeArticles" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Scrape new Articles</button>
                 </nav>
                 </div>
             </div>
@@ -66,6 +63,7 @@
 
             <!-- Articles here -->
             <main class="mdl-layout__content">
+                <span class="mdl-layout-title">Saved Aritcles Scraper</span>
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--4-col">
                         <div class="demo-card-wide mdl-card mdl-shadow--2dp">
@@ -80,8 +78,8 @@
                                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                                 Read more
                                 </a>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                        Save
+                                <button class="save mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                        Save Article
                                 </button>
                             </div>
                         </div>
@@ -99,8 +97,8 @@
                                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                                 Read more
                                 </a>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                        Save
+                                <button class="save mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                        Save Article 
                                 </button>
                             </div>
                         </div>
@@ -119,8 +117,8 @@
                                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                                 Read more
                                 </a>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                        Save
+                                <button class="save mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                        Save Article
                                 </button>
                             </div>
                         </div>
