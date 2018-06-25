@@ -48,7 +48,7 @@ app.get('/scraper', function(req,res){
 
         //Grab the title and link
 
-        $('article h2 p.teaser').each(function(i,element){
+        $('article h2').each(function(i,element){
             //Save in result object
             let result = {};
 
@@ -77,8 +77,9 @@ app.get('/scraper', function(req,res){
 app.get('/home', function(req,res){
     // Grab every document in the Articles collection
     db.Article.find({}).then(function(dbArticle){
-        // res.json(dbArticle)
-        res.render('index',{result: dbArticle})
+        res.json(dbArticle)
+        console.log('Retrieved all articles')
+        // res.render('index',{result: dbArticle})
     }).catch(function(err){
         // If an error occurred, send it to the client
         res.json(err)
@@ -90,7 +91,7 @@ app.get('/home', function(req,res){
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
     // Using the id passed in the id parameter, prepare a query that finds the matching one in db...
-    db.Article.findOne({ _id: req.params.id}, {note: dbNote._id}, {new:true})
+    db.Article.findOne({ _id: req.params.id})
       // ..and populate all of the notes associated with it
       .populate("note")
       .then(function(dbArticle) {
@@ -125,7 +126,7 @@ app.post("/articles/:id", function(req, res) {
   
 // Delete
 // Remove Article
-app.get('/articles/:id', function(req, res){
+app.get('/articledelete/:id', function(req, res){
 
     db.Article.findOneAndUpdate({ _id: req.params.id }, { saved:false }, { new: true }).then(function(dbArticle) {
             // If able to successfully delete an Article, send it back to the client
@@ -141,9 +142,9 @@ app.get('/articles/:id', function(req, res){
 // Delete 
 // Remove notes 
 
-app.get("/delete/:id", function(req, res) {
+app.get("/notedelete/:id", function(req, res) {
     // Remove a note using the objectID
-    db.notes.remove(
+    db.Note.remove(
       {
         _id: mongojs.ObjectID(req.params.id)
       },
@@ -171,7 +172,7 @@ app.get("/delete/:id", function(req, res) {
 
 app.get("/clearall", function(req, res) {
     // Remove every note from the notes collection
-    db.notes.remove({}, function(error, response) {
+    db.Note.remove({}, function(error, response) {
       // Log any errors to the console
       if (error) {
         console.log(error);
@@ -184,6 +185,21 @@ app.get("/clearall", function(req, res) {
         res.send(response);
       }
     });
+});
+
+//Remove all articles
+
+app.get('/remove/allarticles', function(req,res){
+    // Grab and remove every document in the Articles collection
+    db.Article.remove({}).then(function(dbArticle){
+        //Empty json
+        res.json(dbArticle)
+        console.log('Removed')
+        // res.render('index',{result: dbArticle})
+    }).catch(function(err){
+        // If an error occurred, send it to the client
+        res.json(err)
+    })
 });
   
 app.get
