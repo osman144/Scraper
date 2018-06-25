@@ -38,6 +38,7 @@ app.get('/', function(req,res){
     res.send('Hello World')
 })
 
+// GET 
 //Get route for scraping NPR website
 app.get('/scraper', function(req,res){
     //First grab the body with an HTML request
@@ -71,6 +72,7 @@ app.get('/scraper', function(req,res){
 
 });
 
+//GET 
 // Route for getting all Articles from the db
 app.get('/home', function(req,res){
     // Grab every document in the Articles collection
@@ -84,10 +86,11 @@ app.get('/home', function(req,res){
     
 })
 
-// Get article notes
+// GET
+// Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
-    // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-    db.Article.findOne({ _id: req.params.id })
+    // Using the id passed in the id parameter, prepare a query that finds the matching one in db...
+    db.Article.findOne({ _id: req.params.id}, {note: dbNote._id}, {new:true})
       // ..and populate all of the notes associated with it
       .populate("note")
       .then(function(dbArticle) {
@@ -120,7 +123,70 @@ app.post("/articles/:id", function(req, res) {
         });
 });
   
-//
+// Delete
+// Remove Article
+app.get('/articles/:id', function(req, res){
+
+    db.Article.findOneAndUpdate({ _id: req.params.id }, { saved:false }, { new: true }).then(function(dbArticle) {
+            // If able to successfully delete an Article, send it back to the client
+            console.log(dbArticle)
+            res.json(dbArticle);
+        })
+        .catch(function(err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
+
+// Delete 
+// Remove notes 
+
+app.get("/delete/:id", function(req, res) {
+    // Remove a note using the objectID
+    db.notes.remove(
+      {
+        _id: mongojs.ObjectID(req.params.id)
+      },
+      function(error, removed) {
+        // Log any errors from mongojs
+        if (error) {
+          console.log(error);
+          res.send(error);
+        }
+        else {
+          // Otherwise, send the mongojs response to the browser
+          // This will fire off the success function of the ajax request
+          console.log(removed);
+          res.send(removed);
+        }
+      }
+    );
+});
+  
+
+
+// Delete 
+// Clear all notes
+// Clear the DB
+
+app.get("/clearall", function(req, res) {
+    // Remove every note from the notes collection
+    db.notes.remove({}, function(error, response) {
+      // Log any errors to the console
+      if (error) {
+        console.log(error);
+        res.send(error);
+      }
+      else {
+        // Otherwise, send the mongojs response to the browser
+        // This will fire off the success function of the ajax request
+        console.log(response);
+        res.send(response);
+      }
+    });
+});
+  
+app.get
 app.listen(PORT, function(){
     console.log("App running on port " + PORT + "!");
 });
