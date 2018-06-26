@@ -211,6 +211,6 @@ app.get('/remove/allarticles', function(req,res){
 });
   
 app.get
-app.listen(process.env.PORT || PORT, function(){
+app.listen(process.env.PORT || 3000, function(){
     console.log("App running on port " + PORT + "!");
 });
