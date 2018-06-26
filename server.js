@@ -26,6 +26,13 @@ const app = express();
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+// Use body-parser for handling form submissions
+app.use(bodyParser.urlencoded({ extended: true }));
+// Use express.static to serve the public folder as a static directory
+app.use(express.static("public"));
+
+
+
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
@@ -77,9 +84,10 @@ app.get('/scraper', function(req,res){
 app.get('/home', function(req,res){
     // Grab every document in the Articles collection
     db.Article.find({}).then(function(dbArticle){
-        res.json(dbArticle)
+        // res.json(dbArticle)
         console.log('Retrieved all articles')
-        // res.render('index',{result: dbArticle})
+        console.log(dbArticle)
+        res.render('index',{dbArticle})
     }).catch(function(err){
         // If an error occurred, send it to the client
         res.json(err)
