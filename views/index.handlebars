@@ -1,14 +1,35 @@
+{{!-- <div class="mdl-cell mdl-cell--4-col"> {{#each dbArticle}}
+  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">{{ title }}</h2>
+      </div>
+      <!-- <div class="mdl-card__supporting-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Mauris sagittis pellentesque lacus eleifend lacinia...
+      </div> -->
+      <div class="mdl-card__actions mdl-card--border">
+          <a href={{link}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Read more
+          </a>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                  Save Article
+          </button>
+      </div>
+  </div>
+  {{/each}}
+</div> --}}
+
+{{#each dbArticle}}
 <div class="mdl-cell mdl-card mdl-shadow--2dp">
-     {{#each dbArticle}}
-    <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">Welcome</h2>
+    <div class="mdl-card__title" style="padding-top: 12px;">
+        <img src="{{image}}" style="margin: auto; width: 275px; height: 160px;" alt="">
         </div>
+        <h2 class="mdl-card__title-text">{{ title }}</h2>
         <div class="mdl-card__supporting-text post-excerpt">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Mauris sagittis pellentesque lacus eleifend lacinia...
+        {{blurb}}
         </div>
         <div class="mdl-card__actions mdl-card--border post-categories post-tags">
-        <a id="read-more" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
+        <a href={{link}} target="_blank" id="read-more" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
             Read More
         </a>
         <a id="save-article" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
@@ -22,5 +43,5 @@
             <i class="material-icons">share</i>
         </button>
     </div>
-    {{/each}}
 </div>
+  {{/each}}

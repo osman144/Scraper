@@ -4,52 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-    <!-- Material IO CDN -->
+    <title>Scraper</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css"/>
+
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <!-- JQuery CDN -->
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
-    <!-- Uses a transparent header that draws on top of the layout's background -->
-    <style>
-
-        
-    </style>
 </head>
 <body>
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-            <header class="mdl-layout__header mdl-layout__header--transparent mdl-layout__header--waterfall">
-                <div class="mdl-layout__header-row">
-                <!-- Title -->
-                <span class="mdl-layout-title">Scraper</span>
-                <!-- Add spacer, to align navigation to the right -->
-                <div class="mdl-layout-spacer"></div>
-                <!-- Search -->
-                
-                <a class="mdl-navigation__link" href="">Home</a>
-                <a class="mdl-navigation__link" href="">Saved Articles</a>
-                <button id="scrapeArticles" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Scrape new Articles</button>
-                
-                </div>
-            </header>
-            <div class="mdl-layout__drawer">
-                <span class="mdl-layout-title">Scraper</span>
-                <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="">About</a>
-                <a class="mdl-navigation__link" href="">Source code</a>
-                </nav>
+   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--transparent mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Scraper</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Search -->
+            
+            <a class="mdl-navigation__link" href="">Home</a>
+            <a class="mdl-navigation__link" href="">Saved Articles</a>
+            <button id="scrapeArticles" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Scrape new Articles</button>
+            
             </div>
-            <main class="mdl-layout__content">
-                <div class="mdl-grid">
-                    {{ body }}
-       
-                </div>
-            </main>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Scraper</span>
+            <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">About</a>
+            <a class="mdl-navigation__link" href="">Source code</a>
+            </nav>
         </div>
+        <main class="mdl-layout__content">
+            <div class="mdl-grid">
+                {{{ body }}}
+    
+            </div>
+        </main>
+    </div>
 
 
 </body>

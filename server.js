@@ -55,16 +55,22 @@ app.get('/scraper', function(req,res){
 
         //Grab the title and link
 
-        $('article h2').each(function(i,element){
+        $('article').each(function(i,element){
             //Save in result object
             let result = {};
+            result.title=$(this).children("div.item-info").children("h2.title").text();
+            result.link=$(this).children("div.item-info").children("h2.title").children("a").attr("href");
+            result.blurb=$(this).children("div.item-info").children("p.teaser").children("a").text();
+            result.image=$(this).children("div.item-image").children("div.imagewrap").children("a").children("img").attr("src")
+            
 
-            result.title = $(this).children("a").text();
-            result.link = $(this).children("a").attr("href");
+            // result.title = $(this).children("a").text();
+            // result.link = $(this).children("a").attr("href");
             // result.blurb = $(this).children("a").text();
 
             // result.image = $(this).attr('src')
         
+            console.log(result)
             // Create a new Article using the `result` object built from scraping
             db.Article.create(result).then(function(dbArticle) {
                 // View the added result in the console
