@@ -1,5 +1,9 @@
-.demo-layout-transparent {
-    background: url('../images/abstract-compressed.jpg') center / cover;
+.mdl-layout {
+    background-image: url('./images/abstract-compressed.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
   }
   .demo-layout-transparent .mdl-layout__header,
   .demo-layout-transparent .mdl-layout__drawer-button {
@@ -7,13 +11,16 @@
        your background is light. */
     color: chocolate;
   }
-  .mdl-layout-title{
-      font-size: 30px;
-      padding-left:300px;
-      
+  .mdl-card__title {
+      color: #fff;
+      height: 176px;
+      background: url('https://www.getmdl.io/assets/demos/welcome_card.jpg') center / cover;
   }
 
-  .mdl-grid{
-      margin-top:85px;
-      margin-left:20px;
+  .mdl-card__menu {
+      color: #fff;
+  }
+
+  #save-article{
+      float:right;
   }
