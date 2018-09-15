@@ -16,3 +16,5 @@ router.get("/saved", function(req,res){
     .sort({date:-1})
     .then(dbArticles => res.render("saved", {articles:dbArticles}))
 });
+
+module.exports = router;
