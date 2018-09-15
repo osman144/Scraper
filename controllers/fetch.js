@@ -1,7 +1,7 @@
 // Controller for our scraper
 // ============================
-var db = require("../models");
-var scrape = require("../scripts/scrape");
+let db = require("../models");
+let scrapeArticles = require("../scripts/scrape");
 
 // Fancy create method
 module.exports = {

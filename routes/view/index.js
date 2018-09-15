@@ -1,5 +1,5 @@
-var router = require("express").Router();
-var db = require("../../models");
+let router = require("express").Router();
+let db = require("../../models");
 
 // This route renders the homepage
 router.get("/", function(req,res){

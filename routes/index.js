@@ -1,8 +1,8 @@
-var router = require("express").Router();
+let router = require("express").Router();
 // API routes
-var apiRoutes = require("./api");
+let apiRoutes = require("./api");
 // View Routes, Handlebars engine
-var viewRoutes = require("./view");
+let viewRoutes = require("./view");
 
 router.use("/api", apiRoutes);
 router.use("/", viewRoutes)
