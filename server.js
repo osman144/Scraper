@@ -5,9 +5,6 @@ const express = require ('express');
 const exphbs = require ('express-handlebars');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-//Axios is a promised-based http library, similar to jQuery's Ajax method
-//Automatically transforms as JSON data
-const axios = require('axios')
 const request = require('request');
 // Require all models
 const db = require("./models");
@@ -37,11 +34,6 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlin
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
-
-app.get('/', function(req,res){
-    res.send('Hello World')
-})
-
 
 //GET 
 // Route for getting all Articles from the db
