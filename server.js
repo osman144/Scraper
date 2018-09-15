@@ -201,21 +201,6 @@ app.get("/clearall", function(req, res) {
     });
 });
 
-//Remove all articles
-
-app.get('/remove/allarticles', function(req,res){
-    // Grab and remove every document in the Articles collection
-    db.Article.remove({}).then(function(dbArticle){
-        //Empty json
-        res.json(dbArticle)
-        console.log('Removed')
-        // res.render('index',{result: dbArticle})
-    }).catch(function(err){
-        // If an error occurred, send it to the client
-        res.json(err)
-    })
-});
-  
 app.get
 app.listen(process.env.PORT || 3000, function(){
     console.log("App running on port " + PORT + "!");
