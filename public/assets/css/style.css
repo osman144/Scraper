@@ -14,7 +14,8 @@
   .mdl-card__title {
       color: #fff;
       height: 176px;
-      background: url('https://www.getmdl.io/assets/demos/welcome_card.jpg') center / cover;
+      background-color: #a3a0a0;
+      
   }
 
   .mdl-card__menu {
@@ -23,4 +24,13 @@
 
   #save-article{
       float:right;
+  }
+
+  .mdl-card__title-text {
+      height: 85px;
+      padding-top: 3px;
+  }
+
+  .mdl-card__supporting-text{
+      height: 100px;
   }
