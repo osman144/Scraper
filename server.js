@@ -139,32 +139,6 @@ app.post("/articles/:id", function(req, res) {
 });
 
 
-
-  
-
-
-// Delete 
-// Clear all notes
-// Clear the DB
-
-app.get("/clearall", function(req, res) {
-    // Remove every note from the notes collection
-    db.Note.remove({}, function(error, response) {
-      // Log any errors to the console
-      if (error) {
-        console.log(error);
-        res.send(error);
-      }
-      else {
-        // Otherwise, send the mongojs response to the browser
-        // This will fire off the success function of the ajax request
-        console.log(response);
-        res.send(response);
-      }
-    });
-});
-
-
 app.get
 app.listen(process.env.PORT || 3000, function(){
     console.log("App running on port " + PORT + "!");
