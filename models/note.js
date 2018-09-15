@@ -5,6 +5,10 @@ const Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new NoteSchema object
 const NoteSchema = new Schema({
+    date:{
+        type: Date,
+        default: Date.now
+    },
     // `title` is of type String
     title: String,
     // `body` is of type String
