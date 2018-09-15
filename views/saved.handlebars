@@ -1,5 +1,5 @@
 
-{{#each dbArticle}}
+{{#each dbArticles}}
 <div class="mdl-cell mdl-card mdl-shadow--2dp">
     <div class="mdl-card__title" style="padding-top: 12px;">
         <img src="{{image}}" style="margin: auto; width: 275px; height: 160px;" alt="">
@@ -13,8 +13,19 @@
             Read More
         </a>
         <a id="save-article" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">
-            Save Article
+            Note
         </a>
+        </div>
+        {{!-- Trigger/Open The Modal --}}
+        <button id="myBtn">Open Modal</button>
+        {{!-- The Modal --}}
+        <div id="myModal" class="modal">
+            {{!-- Modal Content --}}
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Some text in the Modal..</p>
+            </div>
+
         </div>
 
         
@@ -23,3 +34,5 @@
     </div>
 </div>
 {{/each}}
+
+
