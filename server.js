@@ -137,46 +137,9 @@ app.post("/articles/:id", function(req, res) {
             res.json(err);
         });
 });
-  
-// Delete
-// Remove Article
-app.get('/articledelete/:id', function(req, res){
 
-    db.Article.findOneAndUpdate({ _id: req.params.id }, { saved:false }, { new: true }).then(function(dbArticle) {
-            // If able to successfully delete an Article, send it back to the client
-            console.log(dbArticle)
-            res.json(dbArticle);
-        })
-        .catch(function(err) {
-            // If an error occurred, send it to the client
-            res.json(err);
-        });
-});
 
-// Delete 
-// Remove notes 
 
-app.get("/notedelete/:id", function(req, res) {
-    // Remove a note using the objectID
-    db.Note.remove(
-      {
-        _id: mongojs.ObjectID(req.params.id)
-      },
-      function(error, removed) {
-        // Log any errors from mongojs
-        if (error) {
-          console.log(error);
-          res.send(error);
-        }
-        else {
-          // Otherwise, send the mongojs response to the browser
-          // This will fire off the success function of the ajax request
-          console.log(removed);
-          res.send(removed);
-        }
-      }
-    );
-});
   
 
 
@@ -200,6 +163,7 @@ app.get("/clearall", function(req, res) {
       }
     });
 });
+
 
 app.get
 app.listen(process.env.PORT || 3000, function(){
