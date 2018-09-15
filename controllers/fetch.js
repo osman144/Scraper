@@ -1,13 +1,13 @@
 // Controller for our scraper
 // ============================
 let db = require("../models");
-let scrapeArticles = require("../scripts/scrape");
+let scrape = require("../scripts/scrape");
 
 // Fancy create method
 module.exports = {
     scrapeArticles: function(req, res) {
         // scrape NPR
-        return scrapeArticles()
+        return scrape()
             .then(function(articles){
                 return db.Article.create(articles);
             })
